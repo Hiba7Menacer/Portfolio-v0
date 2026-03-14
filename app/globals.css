@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 207 85% 17%;
+    --foreground: 0 0% 0%;
+    --card: 207 40% 85%;
+    --card-foreground: 0 0% 0%;
+    --popover: 207 40% 85%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 207 83% 64%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 207 60% 30%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 207 50% 40%;
+    --muted-foreground: 0 0% 20%;
+    --accent: 207 83% 64%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 207 30% 50%;
+    --input: 207 30% 50%;
+    --ring: 207 83% 64%;
+    --radius: 0.75rem;
+    --star-color: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    background: linear-gradient(180deg, #58AFED 0%, #09314D 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #000;
+  }
+}
+
+/* Noise overlay */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.noise-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Star bounce animations */
+@keyframes float-1 {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
+  50% { transform: translateY(-12px) scale(1.05); opacity: 1; }
+}
+@keyframes float-2 {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+  50% { transform: translateY(-8px) rotate(10deg); opacity: 1; }
+}
+@keyframes float-3 {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+  50% { transform: translateY(-16px) scale(1.1); opacity: 0.9; }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.animate-float-1 { animation: float-1 4s ease-in-out infinite; }
+.animate-float-2 { animation: float-2 5s ease-in-out infinite; }
+.animate-float-3 { animation: float-3 6s ease-in-out infinite; }
+.animate-twinkle { animation: twinkle 3s ease-in-out infinite; }
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #09314D;
+}
+::-webkit-scrollbar-thumb {
+  background: #58AFED;
+  border-radius: 3px;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
